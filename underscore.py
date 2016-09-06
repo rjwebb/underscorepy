@@ -26,11 +26,15 @@ def each(in_list, iteratee):
     for x in in_list:
         iteratee(x)
 
+forEach = each
+
 def map(in_list, iteratee):
     o = []
     for x in in_list:
         o.append(iteratee(x))
     return o
+
+collect = map
 
 def reduce(in_list, iteratee, memo):
     m = memo
@@ -38,9 +42,14 @@ def reduce(in_list, iteratee, memo):
         m = iteratee(m, x)
     return m
 
+inject = reduce
+foldl = reduce
+
 def reduce_right(in_list, iteratee, memo):
-    iteratee_l = lambda x, y: iteratee(y, x)
-    return reduce(in_list, iteratee_l, memo)
+    iteratee_r = lambda x, y: iteratee(y, x)
+    return reduce(in_list, iteratee_r, memo)
+
+foldr = reduce_right
 
 def find(in_list, predicate):
     for x in in_list:
@@ -48,8 +57,12 @@ def find(in_list, predicate):
             return x
     return None
 
+detect = find
+
 def filter(in_list, predicate):
     return [x for x in in_list if predicate(x)]
+
+select = filter
 
 def where(in_list, properties):
     properties_f = (lambda x:
