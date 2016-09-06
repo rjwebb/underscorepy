@@ -27,8 +27,10 @@ def each(in_list, iteratee):
         iteratee(x)
 
 def map(in_list, iteratee):
+    o = []
     for x in in_list:
-        yield iteratee(x)
+        o.append(iteratee(x))
+    return o
 
 def reduce(in_list, iteratee, memo):
     m = memo
